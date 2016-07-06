@@ -39,10 +39,13 @@ module.exports = {
                     createTime: {$gt: begin},
                     level: log_levels[req.query.type]
                 }).group({_id: "$message", amount: {$sum: 1}}).exec(function (e, d) {
-                    if (d) {
-                        viewData.loggers = d;
-                        console.log("聚合到的数据量为:" + d.length);
+                    if (e || !d) {
+                        console.error("聚合数据报错了:" + e);
+                        cb();
+                        return;
                     }
+                    viewData.loggers = d;
+                    console.log("聚合到的数据量为:" + d.length);
                     cb();
                 });
             }
