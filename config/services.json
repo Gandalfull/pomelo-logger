@@ -3,7 +3,7 @@
         "web": {
             "bean": "expressComponent",
             "host": "localhost",
-            "port": 18600,
+            "port": 911,
             "ssl": false,
             "protocol": "",
             "method": "get|post"
@@ -26,8 +26,8 @@
     "production": {
         "web": {
             "bean": "expressComponent",
-            "host": "localhost",
-            "port": 18600,
+            "host": "0.0.0.0",
+            "port": 911,
             "ssl": false,
             "protocol": "",
             "method": "get|post"
