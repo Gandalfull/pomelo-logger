@@ -1,0 +1,50 @@
+{
+    "development": {
+        "web": {
+            "bean": "expressComponent",
+            "host": "localhost",
+            "port": 18600,
+            "ssl": false,
+            "protocol": "",
+            "method": "get|post"
+        },
+        "dao-logger": {
+            "bean": "mongooseComponent",
+            "host": "localhost",
+            "port": 27017,
+            "user": "",
+            "password": "",
+            "dbname": "logger",
+            "pool": 1
+        },
+        "logger": {
+            "bean": "udpComponent",
+            "host": "localhost",
+            "port": 60090
+        }
+    },
+    "production": {
+        "web": {
+            "bean": "expressComponent",
+            "host": "localhost",
+            "port": 18600,
+            "ssl": false,
+            "protocol": "",
+            "method": "get|post"
+        },
+        "dao-logger": {
+            "bean": "mongooseComponent",
+            "host": "localhost",
+            "port": 27017,
+            "user": "",
+            "password": "",
+            "dbname": "logger",
+            "pool": 1
+        },
+        "logger": {
+            "bean": "udpComponent",
+            "host": "localhost",
+            "port": 60090
+        }
+    }
+}

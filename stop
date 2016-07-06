@@ -1,0 +1,5 @@
+#!/bin/bash
+pm2 stop app.json
+echo "startup ok. watting for pm2 list:"
+sleep 5
+pm2 list

@@ -1,0 +1,30 @@
+{
+  "name": "pomelo-logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "async": "*",
+    "lodash": "*",
+    "bearcat": "*",
+    "mongoose": "4.x",
+    "pomelo-logger": "0.1.x",
+    "pomelo-scheduler": "0.3.x",
+    "underscore": "1.6.x",
+    "newbeely-nodejs": "1.x",
+    "body-parser": "x",
+    "cookie-parser": "x",
+    "express-session": "x",
+    "morgan": "x",
+    "express": "x",
+    "ejs": "x"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "auto",
+  "license": "ISC"
+}

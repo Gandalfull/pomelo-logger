@@ -1,0 +1,31 @@
+{
+  "appenders": [
+    {
+      "type": "console"
+    },
+    {
+      "type": "file",
+      "filename": "${opts:base}/logs/newbeely.log",
+      "maxLogSize": 10485760,
+      "layout": {
+        "type": "basic"
+      },
+      "backups": 99,
+      "category": "newbeely"
+    },
+        {
+          "type": "file",
+          "filename": "${opts:base}/logs/pomelo-logger.log",
+          "maxLogSize": 10485760,
+          "layout": {
+            "type": "basic"
+          },
+          "backups": 99,
+          "category": "pomelo-logger"
+        }
+  ],
+  "levels": {
+  },
+  "replaceConsole": true,
+  "lineDebug": false
+}
