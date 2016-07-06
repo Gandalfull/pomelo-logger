@@ -26,30 +26,35 @@ module.exports = {
         var viewData = {
             info_type: req.query.type,
             portlet: {
-                titles: ["日志数量", "日志内容"],
-                name: ["amount", "_id"]
+                titles: ["进程ID", "日志标记", "日志时间", "日志内容"],
+                name: ["instance", "type", "createTime", "message"]
             },
             loggers: []
         };
         var begin = new Date(new Date().normalize());
-        Async.auto({
-            aggregate: function (cb) {
+
+        Async.waterfall([
+            function (cb) {
                 var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
-                logger.aggregate().match({
-                    createTime: {$gt: begin},
+                logger.find({
+                    createTime: {$gte: begin},
                     level: log_levels[req.query.type]
-                }).group({_id: "$message", amount: {$sum: 1}}).exec(function (e, d) {
-                    if (e || !d) {
-                        console.error("聚合数据报错了:" + e);
-                        cb();
-                        return;
-                    }
-                    viewData.loggers = d;
-                    console.log("聚合到的数据量为:" + d.length);
-                    cb();
-                });
+                }, {_id: 0, __v: 0}).lean().sort({createTime: -1}).limit(100)
+                    .exec(function (e, d) {
+                        if (d) {
+                            for (var i = 0; i < d.length; i++) {
+                                viewData.loggers.push({
+                                    instance: d[i].instance,
+                                    type: d[i].type,
+                                    createTime: d[i].createTime.toLocaleString(),
+                                    message: d[i].message
+                                });
+                            }
+                        }
+                        cb(e, d);
+                    });
             }
-        }, function (e, r) {
+        ], function (e) {
             res.render('info', viewData);
         });
     }
