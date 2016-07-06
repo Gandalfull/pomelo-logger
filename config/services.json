@@ -3,7 +3,7 @@
         "web": {
             "bean": "expressComponent",
             "host": "localhost",
-            "port": 911,
+            "port": 65000,
             "ssl": false,
             "protocol": "",
             "method": "get|post"
