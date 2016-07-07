@@ -137,73 +137,67 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="portlet light portlet-fit bordered">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class=" icon-layers font-red"></i>
-                                <span class="caption-subject font-red bold uppercase">饼形图</span>
-                            </div>
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-gift"></i>条件选择
                         </div>
-                        <div class="portlet-body">
-                            <div id="interactive" class="chart" style="padding: 0px; position: relative;">
-                                <canvas class="flot-base" width="472" height="300"
-                                        style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 472px; height: 300px;"></canvas>
-                                <canvas class="flot-overlay" width="472" height="300"
-                                        style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 472px; height: 300px;"></canvas>
-                                <div class="legend">
-                                    <div style="position: absolute; width: 55px; height: 85px; top: 5px; right: 5px; opacity: 0.85; background-color: rgb(255, 255, 255);"></div>
-                                    <table style="position:absolute;top:5px;right:5px;;font-size:smaller;color:#545454">
-                                        <tbody>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid rgb(237,194,64);overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Series1</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid rgb(175,216,248);overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Series2</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid rgb(203,75,75);overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Series3</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid rgb(77,167,77);overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Series4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="legendColorBox">
-                                                <div style="border:1px solid #ccc;padding:1px">
-                                                    <div style="width:4px;height:0;border:5px solid rgb(148,64,237);overflow:hidden"></div>
-                                                </div>
-                                            </td>
-                                            <td class="legendLabel">Series5</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                            <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
                         </div>
                     </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="/info" class="form-horizontal" method="get">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">编号 </label>
+                                    <div class="col-md-4">
+                                        <input id="id" type="text" class="form-control placeholder-no-fix"
+                                               placeholder="1001"
+                                               name="id">
+                                        <span class="help-block"> 此编号有管理后台统一管理. </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">名称 </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control placeholder-no-fix" placeholder="heivr"
+                                               name="name" id="name">
+                                        <span class="help-block"> 标注本场地的内部名称. </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">标题 </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control placeholder-no-fix"
+                                               placeholder="黑晶研发-展示厅" name="title" id="title">
+                                        <span class="help-block"> 标注本场地的外部名称. </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">签名 </label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control placeholder-no-fix" placeholder="HEIVR"
+                                               name="signature" id="signature">
+                                        <span class="help-block"> 研发人员会根据这个签名确定场地. </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn btn-circle green">保存修改</button>
+                                        <button type="button" class="btn btn-circle grey-salsa btn-outline">取消修改
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN SAMPLE TABLE PORTLET-->
                     <div class="portlet box green">

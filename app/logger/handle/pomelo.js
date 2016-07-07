@@ -22,7 +22,7 @@ var log_levels = {
 module.exports = {
     handle: function (msg, rinfo) {
         var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
-        logger.collection.insert({
+        logger.cache({
             createTime: new Date(msg["@timestamp"]),
             instance: msg.fields.sid,
             level: log_levels[msg.fields.level],

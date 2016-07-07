@@ -23,6 +23,24 @@ var Schema = new Mongoose.Schema(Table, SchemaOption);
 Schema.set('redisCache', 'loggerSchema');
 Schema.set('expire', 60000);
 
+
+var datas = [];
+var timer = null;
+Schema.statics.cache = function (msg) {
+    datas.push(msg);
+    if (!timer) {
+        var that = this;
+        timer = setTimeout(function () {
+            if (datas.length != 0) {
+                that.collection.insert(datas, function (e) {
+                }, 1000);
+                datas = [];
+            }
+            timer = null;
+        });
+    }
+};
+
 module.exports = {
     "name": "logger",
     "schema": Schema
