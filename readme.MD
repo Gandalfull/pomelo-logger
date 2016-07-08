@@ -22,6 +22,7 @@
         npm install pm2 -g
 >* 启动项目
 
+        npm install -d
         pm2 start app.json
 
 >3 修改pomelo的log4日志配置
