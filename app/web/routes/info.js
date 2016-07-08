@@ -53,7 +53,7 @@ module.exports = {
         Async.auto({
             instance: function (cb) {
                 var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
-                logger.aggregate().match({createTime: {$gte: begin, $lt: end}}).group({
+                logger.aggregate().match({createTime: {$gte: begin, $lt: end}, level: log_levels[select_level]}).group({
                     _id: "$instance",
                     amount: {$sum: 1}
                 }).exec(function (e, r) {
@@ -63,7 +63,7 @@ module.exports = {
             },
             type: function (cb) {
                 var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
-                logger.aggregate().match({createTime: {$gte: begin, $lt: end}}).group({
+                logger.aggregate().match({createTime: {$gte: begin, $lt: end}, level: log_levels[select_level]}).group({
                     _id: "$type",
                     amount: {$sum: 1}
                 }).exec(function (e, r) {
