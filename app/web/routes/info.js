@@ -22,6 +22,16 @@ var log_levels = {
 
 module.exports = {
     get: function (req, res) {
+        var begin = req.query.begin ? new Date(req.query.begin + " 00:00:00") : new Date(new Date().normalize());
+        var end = req.query.end ? new Date(req.query.end + " 00:00:00") : begin.otherDay(1);
+        if (end < begin) {
+            end = begin.otherDay(1);
+        }
+        var select_instance = req.query.instance;
+        var select_category = req.query.category;
+        var select_level = req.query.level || "DEBUG";
+
+        var limit = req.query.limit || 100;
 
         var viewData = {
             info_type: req.query.type,
@@ -29,17 +39,51 @@ module.exports = {
                 titles: ["进程ID", "日志标记", "日志时间", "日志内容"],
                 name: ["instance", "type", "createTime", "message"]
             },
-            loggers: []
+            loggers: [],
+            instances: [],
+            select_instance: select_instance || "",
+            select_categorys: select_category || "",
+            select_level: select_level,
+            levels: ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
+            begin: begin.toLocaleDateString(),
+            end: end.toLocaleDateString(),
+            categorys: []
         };
-        var begin = new Date(new Date().normalize());
 
-        Async.waterfall([
-            function (cb) {
+        Async.auto({
+            instance: function (cb) {
                 var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
-                logger.find({
+                logger.aggregate().match({createTime: {$gte: begin, $lt: end}}).group({
+                    _id: "$instance",
+                    amount: {$sum: 1}
+                }).exec(function (e, r) {
+                    viewData.instances = r || [];
+                    cb();
+                });
+            },
+            type: function (cb) {
+                var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
+                logger.aggregate().match({createTime: {$gte: begin, $lt: end}}).group({
+                    _id: "$type",
+                    amount: {$sum: 1}
+                }).exec(function (e, r) {
+                    viewData.categorys = r || [];
+                    cb();
+                });
+            },
+            loges: function (cb) {
+                var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
+                var condition = {
                     createTime: {$gte: begin},
-                    level: log_levels[req.query.type]
-                }, {_id: 0, __v: 0}).lean().sort({createTime: -1}).limit(100)
+                    level: log_levels[select_level]
+                };
+                if (select_instance) {
+                    condition.instance = select_instance;
+                }
+                if (select_category) {
+                    condition.type = select_category;
+                }
+                logger.find(condition, {_id: 0, __v: 0}).lean().sort({createTime: -1}).limit(limit)
                     .exec(function (e, d) {
                         if (d) {
                             for (var i = 0; i < d.length; i++) {
@@ -54,7 +98,7 @@ module.exports = {
                         cb(e, d);
                     });
             }
-        ], function (e) {
+        }, function () {
             res.render('info', viewData);
         });
     }
