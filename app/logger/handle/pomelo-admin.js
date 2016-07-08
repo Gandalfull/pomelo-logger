@@ -18,7 +18,7 @@ var log_levels = {
     FATAL: 50000,
     OFF: Number.MAX_VALUE
 };
-
+var reg_color = /\[\d\dm/g
 module.exports = {
     handle: function (msg, rinfo) {
         var logger = Bearcat.getBean('application').getComponent('dao-logger').getConnection().model('logger');
@@ -27,7 +27,7 @@ module.exports = {
             instance: msg.fields.sid,
             level: log_levels[msg.fields.level],
             type: msg.type,
-            message: msg.message
+            message: msg.message.replace(reg_color, "")
         });
     }
 };

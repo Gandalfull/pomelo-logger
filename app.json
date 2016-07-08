@@ -6,9 +6,6 @@
     "error_file": "./logs/pm2-err.log",
     "out_file": "./logs/pm2-out.log",
     "pid_file": "./pids/pm2.pid",
-    "one_launch_only": "true",
-    "exec_mode": "cluster_mode",
-    "instances": 1,
     "env": {
       "NODE_ENV": "production",
       "NODE_CONFIG":"services.json",
