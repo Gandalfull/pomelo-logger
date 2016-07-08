@@ -34,7 +34,7 @@ module.exports = {
         var limit = req.query.limit || 100;
 
         var viewData = {
-            info_type: req.query.type,
+            info_type: select_level,
             portlet: {
                 titles: ["进程ID", "日志标记", "日志时间", "日志内容"],
                 name: ["instance", "type", "createTime", "message"]
