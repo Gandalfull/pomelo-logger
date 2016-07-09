@@ -44,7 +44,7 @@ module.exports = {
             select_instance: select_instance || "",
             select_categorys: select_category || "",
             select_level: select_level,
-            levels: ["DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
+            levels: ["DEBUG", "INFO", "WARN", "ERROR", "TRACE", "FATAL"],
             begin: begin.toLocaleDateString(),
             end: end.toLocaleDateString(),
             categorys: []

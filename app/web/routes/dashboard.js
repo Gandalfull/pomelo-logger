@@ -30,6 +30,9 @@ module.exports = {
             _error: function (cb) {
                 logger.count({createTime: {$gte: Begin, $lt: End}, level: 40000}, cb);
             },
+            _trace: function (cb) {
+                logger.count({createTime: {$gte: Begin, $lt: End}, level: 5000}, cb);
+            },
             _fatal: function (cb) {
                 logger.count({createTime: {$gte: Begin, $lt: End}, level: 50000}, cb);
             }
@@ -39,9 +42,10 @@ module.exports = {
                 _info: r._info,
                 _warn: r._warn,
                 _error: r._error,
-                _fatal: r._fatal
+                _fatal: r._fatal,
+                _trace: r._trace
             };
-            response.render('dashboard',viewData);
+            response.render('dashboard', viewData);
         });
     }
 };
