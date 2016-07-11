@@ -31,7 +31,7 @@ module.exports = {
         var select_category = req.query.category;
         var select_level = req.query.level || "DEBUG";
 
-        var limit = req.query.limit || 100;
+        var limit = req.query.limit ? parseInt(req.query.limit) : 100;
 
         var viewData = {
             info_type: select_level,
