@@ -47,7 +47,8 @@ module.exports = {
             levels: ["DEBUG", "INFO", "WARN", "ERROR", "TRACE", "FATAL"],
             begin: begin.toLocaleDateString(),
             end: end.toLocaleDateString(),
-            categorys: []
+            categorys: [],
+            limit: limit
         };
 
         Async.auto({
