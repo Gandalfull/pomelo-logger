@@ -235,24 +235,26 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                         </div>
                         <div class="portlet-body flip-scroll">
-                            <table class="table table-striped table-bordered table-advance table-hover">
-                                <thead class="flip-content">
-                                <tr>
-                                    <% for( var i in portlet.titles ){ %>
-                                    <th> <%= portlet.titles[i] %></th>
+                            <div class="table-scrollable">
+                                <table class="table table-striped table-bordered table-advance table-hover">
+                                    <thead class="flip-content">
+                                    <tr>
+                                        <% for( var i in portlet.titles ){ %>
+                                        <th> <%= portlet.titles[i] %></th>
+                                        <% } %>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% for( var i in loggers ){ %>
+                                    <tr>
+                                        <% for( var j in portlet.name ){ %>
+                                        <th> <%= loggers[i][portlet.name[j]] %></th>
+                                        <% } %>
+                                    </tr>
                                     <% } %>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <% for( var i in loggers ){ %>
-                                <tr>
-                                    <% for( var j in portlet.name ){ %>
-                                    <th> <%= loggers[i][portlet.name[j]] %></th>
-                                    <% } %>
-                                </tr>
-                                <% } %>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- END SAMPLE TABLE PORTLET-->
